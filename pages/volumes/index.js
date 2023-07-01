@@ -1,10 +1,20 @@
 import Link from "next/link";
-import { introduction } from "../../lib/data";
+import { introduction, volumes } from "../../lib/data";
 
 export default function Volumes() {
   return (
     <>
       <h1>The Lord of the Rings</h1>
+      <p>{introduction}</p>
+      <ul>
+        {volumes.map((volume) => (
+          <li key={volume.id}>
+            <Link href={`/volumes/${volume.slug}`}>{volume.title}</Link>
+          </li>
+        ))}
+      </ul>
+      {/* Line bellow no needed cuz of the dynamic route refactoring */}
+      {/* <h1>The Lord of the Rings</h1>
       <p>{introduction}</p>
       <ul>
         <li>
@@ -20,7 +30,7 @@ export default function Volumes() {
             The Return of the King
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </>
   );
 }
